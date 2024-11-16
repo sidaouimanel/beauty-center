@@ -1,0 +1,171 @@
+/* Google Font CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+.contact-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5dc; /* Couleur de fond beige */
+}
+
+.contact-container {
+  width: 85%;
+  background: #fff;
+  border-radius: 6px;
+  padding: 20px 60px 30px 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-left {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  position: relative;
+}
+
+.contact-left::before {
+  content: '';
+  position: absolute;
+  height: 70%;
+  width: 2px;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #afafb6;
+}
+
+.contact-details {
+  margin: 14px;
+  text-align: center;
+}
+
+.contact-details i {
+  font-size: 30px;
+  color: #3e2093;
+  margin-bottom: 10px;
+}
+
+.contact-details .topic {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.contact-details .text-one,
+.contact-details .text-two {
+  font-size: 14px;
+  color: #afafb6;
+}
+
+.contact-right {
+  width: 75%;
+  margin-left: 75px;
+}
+
+.contact-right h2 {
+  font-size: 23px;
+  font-weight: 600;
+  color: #3e2093;
+}
+
+.input-box {
+  height: 50px;
+  width: 100%;
+  margin: 12px 0;
+}
+
+.input-box input,
+.input-box textarea {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #F0F1F8;
+  border-radius: 6px;
+  padding: 0 15px;
+  resize: none;
+}
+
+.message-box {
+  min-height: 110px;
+}
+
+.message-box textarea {
+  padding-top: 6px;
+}
+
+/* Bouton dynamique inspiré de la template */
+.btn {
+  display: flex;
+  justify-content: center;
+  width: 10rem;
+  height: 5rem;
+  background-size: 300% 300%;
+  backdrop-filter: blur(1rem);
+  transition: 0.5s;
+  animation: gradient_301 5s ease infinite;
+  border: transparent;
+  background-image: linear-gradient(137.48deg, #ffdb3b 10%, #FE53BB 45%, #8F51EA 67%, #0044ff 87%);
+  background-clip: content-box;
+  position: relative;
+  text-align: center;
+  color: white; /* Adjust text color */
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none; /* Remove default focus outline */
+  border: none; /* Remove border */
+}
+
+/* From Uiverse.io by mouadh-n */
+a {
+  color: white;
+  position: relative;
+  text-decoration: none; /* Remove underline from link */
+}
+
+.buuton {
+  font-weight: 600;
+  border-radius: 2em;
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.253);
+  backdrop-filter: blur(10px);
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out;
+  position: relative;
+  outline: none; /* Remove outline on focus */
+  border: none; /* Ensure no border on focus */
+}
+
+/* Remove default focus outline */
+.buuton:focus,
+.buuton:active {
+  outline: none;
+  border: none;
+}
+
+.back {
+  position: absolute;
+  background: linear-gradient(20deg, rgb(174, 6, 216) 0%, rgb(85, 31, 200));
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  border-radius: 2em;
+  box-shadow: -5px 0 10px rgb(140, 12, 147), 5px 0 10px rgb(85, 31, 200);
+  transform: translateY(10px);
+}
+
+.buuton:hover {
+  transform: translateY(-10px); /* Adjust to create hover effect */
+  box-shadow: -10px 0 50px rgba(241, 0, 108, 0.352), 10px 0 50px rgb(85, 31, 200);
+}

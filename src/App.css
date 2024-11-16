@@ -1,0 +1,19 @@
+/* App.css */
+
+/* Image de fond globale */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-image: url('//assets/manelbeauty.png'); /* Image de fond globale */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+/* Styles spécifiques pour les pages où l'image de fond ne doit pas apparaître */
+.no-background {
+  background-image: none; /* Enlève l'image de fond pour les éléments avec cette classe */
+}
