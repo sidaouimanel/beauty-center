@@ -1,23 +1,48 @@
 trigger:
   branches:
     include:
-      - main
+      - main  # Remplace "main" par la branche appropriée
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest'  # Utilise une image Ubuntu
+
+variables:
+  nodeVersion: '16.x'
+  sonarCloudToken: '$(SONAR_TOKEN)'  # Utilisation du token SonarCloud comme variable secrète
 
 steps:
-- task: NodeTool@0
+- task: UseNode@1  # Utilise la version 1 de UseNode si la version 2 est problématique
   inputs:
-    versionSpec: '16.x'
+    versionSpec: $(nodeVersion)
+  displayName: 'Set up Node.js'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloudConnection'  # Nom de ta connexion de service SonarCloud
+    organization: '<VotreOrganisationSonarCloud>'
+    scannerMode: 'CLI'
+    projectKey: '<VotreCléDeProjet>'
+    projectName: '<VotreNomDeProjet>'
+    extraProperties: |
+      sonar.login=$(sonarCloudToken)  # Utilisation du token sécurisé directement
+  displayName: 'Prepare SonarCloud'
 
 - script: |
-    npm install
-    npm run build
-    npm test
+    npm install   # Installer les dépendances Node.js
+    npm run build # Construire le projet
+    npm test      # Exécuter les tests unitaires
   displayName: 'Install, Build and Test'
+
+- task: SonarCloudAnalyze@1
+  displayName: 'Run SonarCloud Analysis'
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
+  displayName: 'Publish SonarCloud Analysis Results'
 
 - task: PublishBuildArtifacts@1
   inputs:
     pathToPublish: './dist'
     artifactName: 'build'
+  displayName: 'Publish Artifacts'
