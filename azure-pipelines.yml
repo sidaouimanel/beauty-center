@@ -1,68 +1,23 @@
 trigger:
-- main
+  branches:
+    include:
+      - main
 
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  # Définir les variables pour les versions et configurations
-  nodeVersion: '20.x'
-  sonarQubeProjectKey: 'beauty-center-project'
-  sonarQubeUrl: 'https://sonarcloud.io'
-  sonarQubeToken: $(SONAR_TOKEN)  # Utilise un variable secrète pour le token SonarQube
-  
 steps:
-# Étape 1 : Installer Node.js
 - task: NodeTool@0
   inputs:
-    versionSpec: $(nodeVersion)
-  displayName: 'Install Node.js'
+    versionSpec: '16.x'
 
-# Étape 2 : Installer les dépendances et construire le projet
 - script: |
     npm install
     npm run build
-  displayName: 'Install dependencies and build'
-
-# Étape 3 : Exécuter les tests unitaires
-- script: |
     npm test
-  displayName: 'Run Unit Tests'
-
-# Étape 4 : Analyser le code avec SonarQube
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'SonarCloud'  # Si tu utilises SonarCloud
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    projectKey: $(sonarQubeProjectKey)
-    projectName: 'Beauty Center Project'
-    extraProperties: |
-      sonar.sources=src
-      sonar.tests=src
-      sonar.javascript.lcov.reportPaths=coverage/lcov-report/index.html
-  displayName: 'Prepare SonarQube Analysis'
-
-- task: SonarQubeAnalyze@5
-  displayName: 'Run SonarQube Analysis'
-
-- task: SonarQubePublish@5
-  inputs:
-    pollingTimeoutSec: '300'
-  displayName: 'Publish SonarQube Analysis Results'
-
-# Étape 5 : Créer un package binaire (si nécessaire)
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/dist'  # Répertoire de sortie de la build
-    Contents: '**/*.zip'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Copy build artifacts'
+  displayName: 'Install, Build and Test'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-  displayName: 'Publish Build Artifacts'
-
+    pathToPublish: './dist'
+    artifactName: 'build'
