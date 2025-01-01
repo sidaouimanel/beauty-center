@@ -22,7 +22,7 @@ steps:
     organization: 'manelsidaoui'  
     scannerMode: 'CLI'
     projectKey: 'ProjectKey'  
-    projectName: 'ProjectName'  
+    projectName: 'beauty center '  
     extraProperties: |
       sonar.login=$(sonarCloudToken)  # Utilisation du token sécurisé directement
   displayName: 'Prepare SonarCloud'
