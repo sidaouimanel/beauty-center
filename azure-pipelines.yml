@@ -19,10 +19,10 @@ steps:
 - task: SonarCloudPrepare@1
   inputs:
     SonarCloud: 'SonarCloudConnection'  # Nom de ta connexion de service SonarCloud
-    organization: '<VotreOrganisationSonarCloud>'
+    organization: 'manelsidaoui'  # Nom de votre organisation SonarCloud
     scannerMode: 'CLI'
-    projectKey: '<VotreCléDeProjet>'
-    projectName: '<VotreNomDeProjet>'
+    projectKey: 'YourProjectKey'  # Remplacez par la clé de votre projet SonarCloud
+    projectName: 'YourProjectName'  # Remplacez par le nom de votre projet SonarCloud
     extraProperties: |
       sonar.login=$(sonarCloudToken)  # Utilisation du token sécurisé directement
   displayName: 'Prepare SonarCloud'
