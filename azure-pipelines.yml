@@ -23,7 +23,7 @@ steps:
     scannerMode: 'CLI'  # Utilisation du scanner autonome
     configMode: 'Manual'  # Mode manuel pour configurer les propriétés
     projectKey: 'sidaoui_sidaoui_AZQfPcQkIfikP6TVNO2O'  # Clé de projet SonarQube
-    projectName: 'beautycenter'  # Nom du projet dans SonarQube
+    projectName: 'beautycenterr'  # Nom du projet dans SonarQube
     extraProperties: |
       sonar.login=$(sonarQubeToken)  # Token SonarQube pour l'authentification
       sonar.sources=src  # Dossier des sources à analyser, ajustez-le si nécessaire
