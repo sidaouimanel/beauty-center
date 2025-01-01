@@ -52,4 +52,4 @@ steps:
   inputs:
     pathToPublish: './dist'  # Dossier contenant les artefacts à publier
     artifactName: 'build'    # Nom de l'artefact
-  displayName: 'Publish Build Artifacts'
+  displayName: 'Publish Build Artifacts'  
