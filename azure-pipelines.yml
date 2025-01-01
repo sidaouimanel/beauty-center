@@ -1,48 +1,55 @@
 trigger:
   branches:
     include:
-      - main  # Remplace "main" par la branche appropriée
+      - main  
 
 pool:
-  vmImage: 'ubuntu-latest'  # Utilise une image Ubuntu
+  vmImage: 'ubuntu-latest'  # Utilise une image Ubuntu pour l'exécution du pipeline
 
 variables:
   nodeVersion: '16.x'
-  sonarCloudToken: '$(SONAR_TOKEN)'  # Utilisation du token SonarCloud comme variable secrète
+  sonarQubeToken: '$(SONAR_TOKEN)'  # Token SonarQube sécurisé
 
 steps:
-- task: UseNode@1  # Utilise la version 1 de UseNode si la version 2 est problématique
+- task: UseNode@1  # Configure Node.js
   inputs:
     versionSpec: $(nodeVersion)
   displayName: 'Set up Node.js'
 
-- task: SonarCloudPrepare@1
+# Prépare la configuration d'analyse pour SonarQube
+- task: SonarQubePrepare@5  # Utilisation de la tâche SonarQube pour préparer l'analyse
   inputs:
-    SonarCloud: 'SonarCloudConnection'  
-    organization: 'manelsidaoui'  
-    scannerMode: 'CLI'
-    projectKey: 'ProjectKey'  
-    projectName: 'beauty center '  
+    SonarQube: 'sonarcubeconnexion'  # Nom de la connexion SonarQube configurée dans Azure DevOps
+    scannerMode: 'CLI'  # Utilisation du scanner autonome
+    configMode: 'Manual'  # Mode manuel pour configurer les propriétés
+    projectKey: 'sidaoui_sidaoui_AZQfPcQkIfikP6TVNO2O'  # Clé de projet SonarQube
+    projectName: 'beautycenter'  # Nom du projet dans SonarQube
     extraProperties: |
-      sonar.login=$(sonarCloudToken)  # Utilisation du token sécurisé directement
-  displayName: 'Prepare SonarCloud'
+      sonar.login=$(sonarQubeToken)  # Token SonarQube pour l'authentification
+      sonar.sources=src  # Dossier des sources à analyser, ajustez-le si nécessaire
+      sonar.tests=tests  # Dossier des tests à analyser (ajustez si nécessaire)
+  displayName: 'Prepare SonarQube Analysis'
 
+# Tâche de construction et tests
 - script: |
     npm install   # Installer les dépendances Node.js
     npm run build # Construire le projet
     npm test      # Exécuter les tests unitaires
-  displayName: 'Install, Build and Test'
+  displayName: 'Install, Build, and Test'
 
-- task: SonarCloudAnalyze@1
-  displayName: 'Run SonarCloud Analysis'
+# Tâche d'analyse du code avec SonarQube
+- task: SonarQubeAnalyze@5  # Analyse du code par SonarQube
+  displayName: 'Run SonarQube Analysis'
 
-- task: SonarCloudPublish@1
+# Publier les résultats de l'analyse dans le tableau de bord Azure DevOps
+- task: SonarQubePublish@5  # Publier les résultats de l'analyse SonarQube
   inputs:
-    pollingTimeoutSec: '300'
-  displayName: 'Publish SonarCloud Analysis Results'
+    pollingTimeoutSec: '300'  # Timeout pour attendre les résultats de l'analyse
+  displayName: 'Publish SonarQube Analysis Results'
 
+# Publier les artefacts du build (par exemple, le dossier de build)
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: './dist'
-    artifactName: 'build'
-  displayName: 'Publish Artifacts'
+    pathToPublish: './dist'  # Dossier contenant les artefacts à publier
+    artifactName: 'build'    # Nom de l'artefact
+  displayName: 'Publish Build Artifacts'
