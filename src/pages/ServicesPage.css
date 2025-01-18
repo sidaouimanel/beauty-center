@@ -1,0 +1,37 @@
+.services-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.services-page h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.service-item {
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.service-image {
+  width: 100%;
+  height: auto; /* Ajuste la hauteur en fonction de la largeur */
+  max-height: 200px; /* Limite la hauteur maximale pour garder une taille uniforme */
+  object-fit: contain; /* Affiche l'image entière sans la couper */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-item h3 {
+  margin-top: 10px;
+  font-size: 1.2em;
+}

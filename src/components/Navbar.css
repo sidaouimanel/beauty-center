@@ -1,0 +1,62 @@
+/* src/components/Navbar.css */
+
+.navbar {
+    display: flex;
+    justify-content: center; /* Centre tout le contenu horizontalement */
+    align-items: center; /* Aligne les éléments verticalement */
+    background-color: #fff; /* Changez la couleur de fond si nécessaire */
+    padding: 10px 20px; /* Ajustez le padding selon vos besoins */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optionnel : ajoute une ombre pour un effet visuel */
+  }
+  
+  .navbar-logo {
+    flex: 1; /* Permet à ce div de prendre autant de place que nécessaire */
+  }
+  
+  .navbar-logo img {
+    height: 40px; /* Ajustez la hauteur du logo selon vos besoins */
+  }
+  
+  .navbar-links {
+    display: flex;
+    justify-content: center; /* Centre les liens horizontalement */
+    gap: 20px; /* Espace entre les liens */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar-links li {
+    margin: 0;
+  }
+  
+  .navbar-links a {
+    text-decoration: none;
+    color: #f1eded; /* Couleur des liens */
+    font-size: 1em; /* Taille de la police des liens */
+  }
+  
+  .navbar-links a:hover {
+    color: #f8a07b; /* Couleur au survol */
+  }
+  
+  .navbar-buttons {
+    display: flex;
+    gap: 10px; /* Espace entre les boutons */
+  }
+  
+  .navbar-buttons .button {
+    background-color: #f8a07b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1em;
+  }
+  
+  .navbar-buttons .button:hover {
+    background-color: #d97c56;
+  }
+  

@@ -1,0 +1,88 @@
+/* src/pages/AdminPage.css */
+.admin-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+.admin-page h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #495057;
+}
+
+.admin-page table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 40px; /* Ajoute un espacement entre les tables */
+}
+
+.admin-page th, .admin-page td {
+  padding: 15px;
+  text-align: left;
+}
+
+.admin-page th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.admin-page td {
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+.admin-page tr:nth-child(even) td {
+  background-color: #e9ecef;
+}
+
+.admin-page tr:hover td {
+  background-color: #dbe2e8;
+}
+
+.admin-page table, th, td {
+  border: none;
+}
+
+.bin-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  background-color: rgb(255, 95, 95);
+  cursor: pointer;
+  border: 3px solid rgb(255, 201, 201);
+  transition-duration: 0.3s;
+}
+
+.bin-bottom {
+  width: 15px;
+}
+
+.bin-top {
+  width: 17px;
+  transform-origin: right;
+  transition-duration: 0.3s;
+}
+
+.bin-button:hover .bin-top {
+  transform: rotate(45deg);
+}
+
+.bin-button:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+.bin-button:active {
+  transform: scale(0.9);
+}
